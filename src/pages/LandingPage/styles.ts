@@ -21,13 +21,14 @@ export const Container = styled.div`
     width: 200px;
 
     font-family: 'Roboto', sans-serif;
-    font-size: 2rem;
+    font-style: italic;
+    font-size: 1rem;
     font-weight: 700;
 
     display:flex;
     align-items: center;
     justify-content: center;
-
+    
   }
 
 `

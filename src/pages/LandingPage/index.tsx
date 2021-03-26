@@ -4,7 +4,7 @@ import { Container } from "./styles";
 export function LandingPage(){
   return(
     <Container>
-      <Link to="">Acesse</Link>
+      <Link to="/main">ACESSE</Link>
     </Container>
   )
 }
