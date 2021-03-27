@@ -1,34 +1,60 @@
-import { Container } from "./styles";
-import { FiSearch } from "react-icons/fi"
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from 'react-modal';
+import { LoginModal } from "../../components/LoginModal";
+
+import { FiSearch } from "react-icons/fi"
+import { Container } from "./styles";
+
+Modal.setAppElement('#root');
 
 export function Main(){
-  return(
-    <Container>
-      <header>
-        <Link to=""  className="headerButton">Login</Link>
-        <Link to=
-        "/signin" className="headerButton">Signin</Link>
-      </header>
-      
-      <div className="content">
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-        <img src="./assets/logo-rosa.png" alt="wanted" />
+  function handleLoginModalOpen(){
+    setIsLoginModalOpen(true);
+  }
+
+  function handleLoginModalClose(){
+    setIsLoginModalOpen(false);
+  }
+
+  return(
+    <>
+      <Container>
+        <header>
+          <button
+           type="button"
+           className="headerButton"
+           onClick={handleLoginModalOpen}
+           >Login</button>
+          <Link to=
+          "/signin" className="headerButton">Signin</Link>
+        </header>
         
-        <strong>Encontre seu freelancer aqui</strong>
-        
-        <div className="inputWrapper">
-          <div className="searchIcon">
-            <label htmlFor="search">
-            <FiSearch size={40} color={"rgba(242, 7, 137)"} />
-            </label>
+        <div className="content">
+
+          <img src="./assets/logo-rosa.png" alt="wanted" />
+          
+          <strong>Encontre seu freelancer aqui</strong>
+          
+          <div className="inputWrapper">
+            <div className="searchIcon">
+              <label htmlFor="search">
+              <FiSearch size={40} color={"rgba(242, 7, 137)"} />
+              </label>
+            </div>
+            
+            <input type="text" id="search" placeholder="Busque aqui pelo nome ou cidade" />
+            
+            <button type="button" className="searchButton">PESQUISAR</button>
           </div>
-          
-          <input type="text" id="search" placeholder="Busque aqui pelo nome ou cidade" />
-          
-          <button type="button" className="searchButton">PESQUISAR</button>
         </div>
-      </div>
-    </Container>
+      </Container>
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onRequestClose={handleLoginModalClose}
+      />
+    </>
   )
 }
