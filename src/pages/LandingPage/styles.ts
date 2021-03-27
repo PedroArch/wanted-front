@@ -22,7 +22,7 @@ export const Container = styled.div`
 
     font-family: 'Roboto', sans-serif;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 700;
 
     display:flex;

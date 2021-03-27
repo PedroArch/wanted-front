@@ -24,6 +24,7 @@ export const Container = styled.div`
       
       font-size: 1.5rem;
       font-weight: 700;
+      font-style: italic;
       color: var(--white);
 
       display: flex;

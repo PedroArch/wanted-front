@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     --pink: #F20789;
     --white: #FFFFFF;
     --black: #000000;
-    --burgundy: #735A8C;
+    --burgundy: #730237;
     --blue:#3C6AA6;
     --purple: #735A8C;
   }
