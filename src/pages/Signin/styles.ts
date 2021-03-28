@@ -29,7 +29,7 @@ export const Container = styled.div`
 
     margin-top: 6rem;
 
-    background-color:var(--burgundy);
+    background-color:var(--blue);
     padding: 2rem;
 
     border-radius: 0.7rem;
@@ -51,7 +51,7 @@ export const Container = styled.div`
       width: 6rem;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--blue);
+      border: 2px solid var(--white);
     }
 
     input[type="email"] {
