@@ -2,7 +2,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { FcGoogle } from 'react-icons/fc'
-import { ImFacebook2 } from 'react-icons/im'
+import { FaFacebookF } from 'react-icons/fa'
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -22,11 +22,12 @@ export function LoginModal({isOpen, onRequestClose} : LoginModalProps){
         <strong>Login</strong>
         <input type="email" placeholder="Digite seu email" />
         <input type="password" placeholder="Senha" />
-        <Link to="/signin" className="signinButton" />
+        <button type="button" className="loginButton">LOGAR</button>
+        <Link to="/signin" className="signinButton">CADASTRAR</Link>
         <p>Cadastre com suas redes sociais</p>
         <div className="socialMediaButtons">
           <button type="button" className="facebookButton">
-            <ImFacebook2 size={30} color={'rgba(63, 103, 178 )'} />
+            <FaFacebookF size={30} color={'rgba(255, 255, 255)'} />
             <span>Facebook</span>
           </button>
           <button type="button" className="googleButton">
