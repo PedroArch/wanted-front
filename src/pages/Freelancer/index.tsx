@@ -77,6 +77,7 @@ export function Freelancer(){
       </div>
       <div className="contact">
         <form className="messageBox">
+          <strong>CONTATO</strong>
           <input type="text" placeholder="Seu nome"/>
           <input type="text" placeholder="Assunto"/>
           <textarea placeholder="Digite sua mensagem" />
@@ -103,19 +104,20 @@ export function Freelancer(){
       </div>
       <div className="infoBoxes">
         <div className="openningHour">
-          <FiClock size={30} color={'rgba(90, 88, 244)'} />
+          <FiClock size={30} color={'rgba(169, 208, 242)'} />
           <strong>Horario de Atendimento</strong>
           <p>Das 8h até as 18h</p>
         </div>
         <div className="openOnWeekends">
-          <AiOutlineExclamationCircle size={30} color={'rgba(239, 81, 81)'} />
+          <AiOutlineExclamationCircle size={30} color={'rgba(206, 57, 57)'} />
           <strong>Funcionamento aos Finais de Semana</strong>
           <p>Não atende aos finais de semana</p>
         </div>
       </div>
       <div className="reviewsWrapper">
         <strong>AVALIAÇÕES</strong>
-        <div className="reviwBox">
+        
+        <div className="reviewBox">
           <img src="/assets/users/user1.jpg" alt="user1" />
           <div className="review">
             <header>
@@ -133,9 +135,11 @@ export function Freelancer(){
               prazo previsto como acordado, voltarei a fazer negócios
             </p>
           </div>
-          <div className="reviwBox">
-           <img src="/assets/users/user2.jpg" alt="user1" />
-           <div className="review">
+        </div>
+
+        <div className="reviewBox">
+          <img src="/assets/users/user2.jpg" alt="user2" />
+          <div className="review">
             <header>
               <strong>Seu Zé</strong>
               <span>Segunda-Feira 21/01/21 05:30</span>
@@ -150,7 +154,6 @@ export function Freelancer(){
             <p>Entregou pra o véio o que foi pedido. Esse guri tem futuro,
               pode confiar em mim que esse é bicho bom!!
             </p>
-           </div>
           </div>
         </div>
       </div>
