@@ -8,29 +8,6 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  header {
-    width: 100%;
-    height: 3rem;
-    padding: 0 1rem;
-
-    background-color: var(--pink);
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    
-    img{
-      width: 10%;
-    }
-
-    img:last-child{
-      height: 2rem;
-      width: 2rem;
-      border-radius: 50%;
-    }
-  }
-
   .userWrapper {
     width: 720px;
     margin-top: 3rem;

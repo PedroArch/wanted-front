@@ -7,21 +7,6 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  header {
-    width: 100%;
-    height: 2.7rem;
-
-    padding: 0 1rem;
-
-    background-color:var(--pink);
-
-    display: flex;
-    justify-content: space-between;
-    
-    img {
-      padding: 0.4rem;
-    }
-  }
 
   form {
 

@@ -38,7 +38,7 @@ export const Container = styled.div`
     margin-bottom: 0.5rem
   }
 
-  .signinButton {
+  .signupButton {
     height: 2.25rem;
     width: 10rem;
     

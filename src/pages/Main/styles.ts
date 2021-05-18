@@ -4,36 +4,6 @@ export const Container = styled.div`
   height: 100%;
   width: 100%;
 
-  header{
-    width: 100%;
-    height: 2.7rem;
-
-    background-color:var(--pink);
-
-    display: flex;
-    justify-content: flex-end;
-
-    .headerButton {
-      height: 2.3rem;
-      width: 5rem;
-      background-color: var(--blue);
-
-      margin: .2rem .3rem;
-
-      border:0;
-      
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-style: italic;
-      color: var(--white);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-    }
-  }
-
   .content {
 
     width: 100%;

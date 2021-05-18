@@ -23,7 +23,7 @@ export function LoginModal({isOpen, onRequestClose} : LoginModalProps){
         <input type="email" placeholder="Digite seu email" />
         <input type="password" placeholder="Senha" />
         <button type="button" className="loginButton">LOGAR</button>
-        <Link to="/signin" className="signinButton">CADASTRAR</Link>
+        <Link to="/signup" className="signupButton">CADASTRAR</Link>
         <p>Cadastre com suas redes sociais</p>
         <div className="socialMediaButtons">
           <button type="button" className="facebookButton">

@@ -1,15 +1,14 @@
 import { Container } from "./styles";
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import { Link } from 'react-router-dom'
+import Header from '../../components/Header'
 import L from 'leaflet';
-import { FiArrowLeft } from 'react-icons/fi';
 import { FaFacebookF, FaInstagram, FaTwitter, FaGithub, FaDeviantart, FaLinkedin } from 'react-icons/fa'
 import markerImg from '../../images/marker.png'
 
 import 'leaflet/dist/leaflet.css';
 
 
-export function FreelancerSign() {
+export function FreelancerSignup() {
 
 
   var markerIcon = L.icon({
@@ -19,14 +18,9 @@ export function FreelancerSign() {
 });
 
   return(
+    <>
+    <Header />
     <Container>
-        <header>
-          <Link to="/main">
-            <FiArrowLeft size={30} />
-          </Link>
-          <img src="./assets/logo-branco.png" alt="wanted" />
-          <img src="/assets/users/user.jpg" alt="user" />
-        </header>
       <div className="formWrapper">
         <h1>Freelancer</h1>
         <input type="text" placeholder="Que tipo de freelancer você é?" />
@@ -85,5 +79,6 @@ export function FreelancerSign() {
         <button type="button">CADASTRAR</button>
       </div>
     </Container>
+    </>
   )
 }

@@ -1,37 +1,17 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import Modal from 'react-modal';
-import { LoginModal } from "../../components/LoginModal";
-
+import Header from '../../components/Header'
+;
 import { FiSearch } from "react-icons/fi"
 import { Container } from "./styles";
 
 Modal.setAppElement('#root');
 
 export function Main(){
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
-  function handleLoginModalOpen(){
-    setIsLoginModalOpen(true);
-  }
-
-  function handleLoginModalClose(){
-    setIsLoginModalOpen(false);
-  }
 
   return(
     <>
+      <Header />
       <Container>
-        <header>
-          <button
-           type="button"
-           className="headerButton"
-           onClick={handleLoginModalOpen}
-           >Login</button>
-          <Link to=
-          "/signin" className="headerButton">Signin</Link>
-        </header>
-        
         <div className="content">
 
           <img src="./assets/logo-rosa.png" alt="wanted" />
@@ -51,10 +31,6 @@ export function Main(){
           </div>
         </div>
       </Container>
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onRequestClose={handleLoginModalClose}
-      />
     </>
   )
 }

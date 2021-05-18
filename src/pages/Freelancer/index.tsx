@@ -1,12 +1,13 @@
 import { Container } from "./styles";
-import { Link } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker} from 'react-leaflet';
 import L from 'leaflet';
-import { FiArrowLeft } from 'react-icons/fi';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { FaFacebookF, FaInstagram, FaTwitter, FaGithub, FaWhatsapp } from 'react-icons/fa'
 import { FiClock } from 'react-icons/fi'
 import { AiOutlineExclamationCircle } from 'react-icons/ai'
+import Header from '../../components/Header';
+
+
 import markerImg from '../../images/marker.png'
 import portImg1 from '../../images/port1.jpg'
 import portImg2 from '../../images/port2.jpg'
@@ -27,14 +28,9 @@ export function Freelancer(){
 
 
   return(
+    <>
+    <Header />
     <Container>
-       <header>
-          <Link to="/main">
-            <FiArrowLeft size={30} />
-          </Link>
-          <img src="/assets/logo-branco.png" alt="wanted" />
-          <img src="/assets/users/user.jpg" alt="user" />
-      </header>
       <div className="userWrapper">
         <img src="/assets/users/user3.jpg" alt="user"/>
         <div className="userInfos">
@@ -158,5 +154,6 @@ export function Freelancer(){
         </div>
       </div>
     </Container>
+    </>
   )
 }

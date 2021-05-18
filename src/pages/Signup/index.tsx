@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Container } from "./styles";
-import { FiArrowLeft } from "react-icons/fi"
+import { FiArrowLeft } from "react-icons/fi";
+import Header from '../../components/Header';
 
 const estados = [{
 	"ID": "1",
@@ -138,15 +139,11 @@ const estados = [{
 	"Nome": "Tocantins"
 }]
 
-export function Signin(){
+export function Signup(){
   return (
+		<>
+		<Header />
     <Container>
-      <header>
-        <Link to="/main">
-          <FiArrowLeft size={40} color={'rgba(255, 255, 255)'} />
-        </Link>
-        <img src="/assets/logo-azul.png" alt="wanted"/>
-      </header>
         <form>
           <h1>CADASTRAR</h1>
 
@@ -182,5 +179,6 @@ export function Signin(){
           </div>
         </form>
     </Container>
+		</>
   )
 }
