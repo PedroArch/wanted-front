@@ -69,5 +69,63 @@ export const Container = styled.div`
         
       }
     }
+
+    .searchResults {
+      width: 100%;
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+      .freelancer{
+        background-color: var(--blue);
+        width: 40%;
+        height: 110px;
+        margin-bottom: 2rem;
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+          height: 5rem;
+          width: 5rem;
+          border-radius: 50%;
+          object-fit: cover;
+          margin: 0;
+        }
+
+        .freelancerInfo {
+          margin-left: 2rem;
+
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          
+          ul {
+            list-style: none;
+            margin-left: 0.8rem;
+
+            li:first-child {
+              font-size: 1.5rem;
+              font-weight: 700;
+            }
+          }
+        }
+
+        .porfolios {
+          margin-right: 2rem;
+
+          img {
+            border-radius: 0;
+            margin-right: 1rem;
+          }
+        }  
+      }
+    }
   }
 `

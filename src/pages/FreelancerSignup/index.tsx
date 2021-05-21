@@ -97,8 +97,8 @@ export function FreelancerSignup() {
     data.append('mobile', mobile);
     data.append('type', type);
     data.append('opening_hours', openingHours);
+    // está chegando false sempre, fazer um parse no backend
     data.append('open_on_weekends', String(openOnWeekends));
-    // data.append('user', user)
     images.forEach(image => {
       data.append('images', image)
     })
