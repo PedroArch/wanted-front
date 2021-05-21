@@ -8,7 +8,7 @@ export const Container = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
     header { 
       padding: 0 1rem;
       width: 100%;
@@ -56,6 +56,36 @@ export const Container = styled.form`
 
       padding-left: 0.5rem;
       margin-bottom: 0.5rem;
+    }
+
+  .images-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    margin-bottom: 2rem;
+
+    img {
+      width:100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .new-image {
+      height: 150px;
+      background: var(--white);
+      border: 1px dashed var(--pink);
+      border-radius: 10px;
+      cursor: pointer;
+
+      display: flex;
+      align-items:center;
+      justify-content:center;
+    }
+  }
+    input[type="file"] {
+      display: none;
     }
 
     .contactsWrapper {

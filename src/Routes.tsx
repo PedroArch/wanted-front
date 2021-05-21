@@ -4,6 +4,7 @@ import { LandingPage } from "./pages/LandingPage"
 import { Main } from "./pages/Main"
 import { FreelancerSignup } from "./pages/FreelancerSignup"
 import { Freelancer } from "./pages/Freelancer"
+import { Perfil } from "./pages/Perfil"
 
 export default function Routes() {
   return(
@@ -12,8 +13,9 @@ export default function Routes() {
         <Route path="/" component={LandingPage} exact />
         <Route path="/main" component={Main} />
         <Route path="/signup" component={Signup} />
-        <Route path="/freelancersignup" component={FreelancerSignup} />
+        <Route path="/freelancersignup/:user" component={FreelancerSignup} />
         <Route path="/freelancer/:id" component={Freelancer} />
+        <Route path="/perfil/:id" component={Perfil} />
       </Switch>
     </BrowserRouter>
   )

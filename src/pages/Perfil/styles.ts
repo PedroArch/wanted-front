@@ -105,30 +105,5 @@ export const Container = styled.div`
         padding-left: 0.3rem;
       }
     }
-
-    .avatar-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .new-image {
-        height: 96px;
-        width: 96px;
-        margin-bottom: 1rem;
-        background: #f5f8fa;
-        border: 1px dashed #96d2f0;
-        border-radius: 50%;
-        cursor: pointer;
-
-
-        display: flex;
-        align-items:center;
-        justify-content:center;
-      }
-    }
-
-    input[type="file"] {
-      display: none;
-    }
   }
 `

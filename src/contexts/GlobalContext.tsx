@@ -12,7 +12,7 @@ export const GlobalContext = createContext({} as GlobalContextData);
 
 export function GlobalContextProvider({ children } : GlobalContextProps ) {
 
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged] = useState(false);
 
   return (
     <GlobalContext.Provider value={{
