@@ -1,12 +1,21 @@
+import { useContext, useEffect, useState } from 'react';
+
 import Modal from 'react-modal';
-import Header from '../../components/Header'
-;
+import Header from '../../components/Header';
+
 import { FiSearch } from "react-icons/fi"
 import { Container } from "./styles";
+import { GlobalContext } from '../../contexts/GlobalContext';
 
 Modal.setAppElement('#root');
 
 export function Main(){
+
+  const { freelancers } = useContext(GlobalContext);
+
+  function handleClickSearch () {
+    console.log(freelancers)
+  }
 
   return(
     <>
@@ -27,120 +36,34 @@ export function Main(){
             
             <input type="text" id="search" placeholder="Busque aqui pelo nome ou cidade" />
             
-            <button type="button" className="searchButton">PESQUISAR</button>
+            <button type="button" className="searchButton" onClick={handleClickSearch}>PESQUISAR</button>
           </div>
 
           <div className="searchResults">
             
-            <div className="freelancer">
-              <div className="freelancerInfo">
-                <img src="/assets/users/user1.jpg" alt="user" />
-                <div className="freelancerData">
-                  <ul>
-                    <li>Luciana Paragon</li>
-                    <li>Design</li>
-                    <li>Palhoças - SC</li>
-                  </ul>
+            { freelancers.map((freelancer) => {
+              return (
+                <div key={freelancer.id}className="freelancer">
+                  <div className="freelancerInfo">
+                  <img src={freelancer.user.avatar} alt={freelancer.user.first_name} />
+                  <div className="freelancerData">
+                    <ul>
+                      <li>{`${freelancer.user.first_name} ${freelancer.user.last_name}`}</li>
+                      <li>{freelancer.type}</li>
+                      <li>{`${freelancer.user.city} - ${freelancer.user.state}`}</li>
+                   </ul>
+                  </div>
+                  </div>
+                  <div className="porfolios">
+                    <img src={freelancer.images[0].url} alt="image1" />
+                    <img src={freelancer.images[1].url} alt="image2" />
+                    <img src={freelancer.images[2].url} alt="image3" />
+                  </div>      
                 </div>
-              </div>
-              <div className="porfolios">
-                <img src="/assets/users/port1.jpg" alt="image1" />
-                <img src="/assets/users/port2.jpg" alt="image2" />
-                <img src="/assets/users/port3.jpg" alt="image3" />
-              </div>      
-            </div>
+              )
+            })}
 
-            <div className="freelancer">
-              <div className="freelancerInfo">
-                <img src="/assets/users/user2.jpg" alt="user" />
-                <div className="freelancerData">
-                  <ul>
-                    <li>Seu João</li>
-                    <li>Pecuarista</li>
-                    <li>Uberlândia - MG</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="porfolios">
-                <img src="/assets/users/port4.jpg" alt="image1" />
-                <img src="/assets/users/port1.jpg" alt="image2" />
-                <img src="/assets/users/port5.jpg" alt="image3" />
-              </div>      
-            </div>
-
-            <div className="freelancer">
-              <div className="freelancerInfo">
-                <img src="/assets/users/user3.jpg" alt="user" />
-                <div className="freelancerData">
-                  <ul>
-                    <li>Roy</li>
-                    <li>Dev</li>
-                    <li>São Paulo</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="porfolios">
-                <img src="/assets/users/port2.jpg" alt="image1" />
-                <img src="/assets/users/port4.jpg" alt="image2" />
-                <img src="/assets/users/port5.jpg" alt="image3" />
-              </div>      
-            </div>
-
-            <div className="freelancer">
-              <div className="freelancerInfo">
-                <img src="/assets/users/user1.jpg" alt="user" />
-                <div className="freelancerData">
-                  <ul>
-                    <li>Luciana Paragon</li>
-                    <li>Design</li>
-                    <li>Palhoças - SC</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="porfolios">
-                <img src="/assets/users/port1.jpg" alt="image1" />
-                <img src="/assets/users/port2.jpg" alt="image2" />
-                <img src="/assets/users/port3.jpg" alt="image3" />
-              </div>      
-            </div>
-
-            <div className="freelancer">
-              <div className="freelancerInfo">
-                <img src="/assets/users/user2.jpg" alt="user" />
-                <div className="freelancerData">
-                  <ul>
-                    <li>Seu João</li>
-                    <li>Pecuarista</li>
-                    <li>Uberlândia - MG</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="porfolios">
-                <img src="/assets/users/port4.jpg" alt="image1" />
-                <img src="/assets/users/port1.jpg" alt="image2" />
-                <img src="/assets/users/port5.jpg" alt="image3" />
-              </div>      
-            </div>
-
-            <div className="freelancer">
-              <div className="freelancerInfo">
-                <img src="/assets/users/user3.jpg" alt="user" />
-                <div className="freelancerData">
-                  <ul>
-                    <li>Roy</li>
-                    <li>Dev</li>
-                    <li>São Paulo</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="porfolios">
-                <img src="/assets/users/port2.jpg" alt="image1" />
-                <img src="/assets/users/port4.jpg" alt="image2" />
-                <img src="/assets/users/port5.jpg" alt="image3" />
-              </div>      
-            </div>
           </div>
-
         </div>
       </Container>
     </>
