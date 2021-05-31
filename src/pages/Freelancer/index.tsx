@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import { MapContainer, TileLayer, Marker} from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap} from 'react-leaflet';
 import L from 'leaflet';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { FaFacebookF, FaInstagram, FaTwitter, FaGithub, FaWhatsapp } from 'react-icons/fa'
@@ -7,16 +7,15 @@ import { FiClock } from 'react-icons/fi'
 import { AiOutlineExclamationCircle } from 'react-icons/ai'
 import Header from '../../components/Header';
 
+import FreelancerType from '../../types/FreelancerType';
+import { freelancerDefault } from '../../utils/freelancerDefault'
 
 import markerImg from '../../images/marker.png'
-import portImg1 from '../../images/port1.jpg'
-import portImg2 from '../../images/port2.jpg'
-import portImg3 from '../../images/port3.jpg'
-import portImg4 from '../../images/port4.jpg'
-import portImg5 from '../../images/port5.jpg'
-import portImg6 from '../../images/port6.jpg'
 
 import 'leaflet/dist/leaflet.css';
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+import { useParams } from "react-router-dom";
 
 var markerIcon = L.icon({
   iconUrl: markerImg,
@@ -24,17 +23,40 @@ var markerIcon = L.icon({
   iconAnchor:   [19, 19], // point of the icon which will correspond to marker's location
 });
 
+interface RouteParamsProps {
+  id?: String
+}
+
 export function Freelancer(){
 
+  const routeId: RouteParamsProps = useParams()
+
+  const [freelancer, setFreelancer] = useState<FreelancerType>(freelancerDefault);
+
+  useEffect(() => {
+    async function freelancerFetch () {
+      const response = await api.get(`/freelancers/${routeId.id}`);
+      setFreelancer(response.data)
+    }
+    freelancerFetch()
+  }, [routeId.id])
+
+
+  function ChangeView ({ center, zoom }: any) {
+    const map = useMap()
+    map.setView(center, zoom)
+
+    return null;
+  }
 
   return(
     <>
     <Header />
     <Container>
       <div className="userWrapper">
-        <img src="/assets/users/user3.jpg" alt="user"/>
+        <img src={`${freelancer.user.avatar}`} alt="user"/>
         <div className="userInfos">
-          <h1>Pedro Carvalho</h1>
+          <h1>{`${freelancer.user.first_name} ${freelancer.user.last_name}`}</h1>
           <div className="starsIcons">
             <BsStarFill size={25} color={"rgba(249, 215, 28)"} />
             <BsStarFill size={25} color={"rgba(249, 215, 28)"} />
@@ -42,8 +64,8 @@ export function Freelancer(){
             <BsStarFill size={25} color={"rgba(249, 215, 28)"} />
             <BsStarHalf size={25} color={"rgba(249, 215, 28)"} />
           </div>
-          <p>Porto Alegre, RS</p>
-          <p className="typeUser">Desenvolvedor Fullstack</p>
+          <p>{`${freelancer.user.city}, ${freelancer.user.state}`}</p>
+          <p className="typeUser">{`${freelancer.type}`}</p>
         </div>
       </div>
       <div className="socialMediasIcons">
@@ -55,20 +77,16 @@ export function Freelancer(){
       <div className="summary">
         <div className="about">
           <strong>SOBRE MIM</strong>
-          <p>Desenvolvedor Junior embusca de trabalhos tanto como freelance
-            quanto como estágiario. Embusca de conhecimento e experiencia na
-            area. Trabalho com JS, ReactJS, NodeJS e outras tecnologias do
-            mercado.
+          <p>{`${freelancer.about}`}
           </p>
-          <button type="button">Visite meu portfólio</button>
+          <button type="button">
+            <a href={`${freelancer.portfolio}`} target='_blanck'>Visite meu portfólio</a>
+          </button>
         </div>
         <div className="thumbnailsPorfolio">
-          <img src={portImg1} alt="thumbnail Portfolio" />
-          <img src={portImg2} alt="thumbnail Portfolio" />
-          <img src={portImg3} alt="thumbnail Portfolio" />
-          <img src={portImg4} alt="thumbnail Portfolio" />
-          <img src={portImg5} alt="thumbnail Portfolio" />
-          <img src={portImg6} alt="thumbnail Portfolio" />
+          {freelancer.images.map((image) => {
+            return <img key={image.url} src={image.url} alt="imagem portfolio" />
+          })}
         </div>
       </div>
       <div className="contact">
@@ -84,16 +102,17 @@ export function Freelancer(){
           </button>         
         </form>
         <MapContainer
-          center={[-30.0642248,-51.2108403]}
+          center={[freelancer.latitude, freelancer.longitude]}
           style={{ width: '100%', height: 280 }}
           zoom={15}
         >
+          <ChangeView center={[freelancer.latitude, freelancer.longitude]} zoom={15} />
           <TileLayer
             url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGVkcm9hcmNoIiwiYSI6ImNrZzg0am8wdjBkczQycG15MmVmcnZ0OWMifQ.nE2s43Q9SpqIO_qxmGrgww`}
           />
           <Marker
             interactive={false}
-            position={[-30.0642248,-51.2108403]}
+            position={[freelancer.latitude, freelancer.longitude]}
             icon={markerIcon}
           />
         </MapContainer>
@@ -102,13 +121,20 @@ export function Freelancer(){
         <div className="openningHour">
           <FiClock size={30} color={'rgba(169, 208, 242)'} />
           <strong>Horario de Atendimento</strong>
-          <p>Das 8h até as 18h</p>
+          <p>{freelancer.opening_hours}</p>
         </div>
-        <div className="openOnWeekends">
-          <AiOutlineExclamationCircle size={30} color={'rgba(206, 57, 57)'} />
-          <strong>Funcionamento aos Finais de Semana</strong>
-          <p>Não atende aos finais de semana</p>
-        </div>
+        { freelancer.open_on_weekends ? 
+          <div className="openOnWeekendsTrue">
+            <AiOutlineExclamationCircle size={30} color={'rgba(37, 211, 102)'} />
+            <strong>Funcionamento aos Finais de Semana</strong>
+            <p>Atende aos finais de semana</p>
+          </div>
+          : 
+          <div className="openOnWeekendsFalse">
+            <AiOutlineExclamationCircle size={30} color={'rgba(206, 57, 57)'} />
+            <strong>Funcionamento aos Finais de Semana</strong>
+            <p>Não atende aos finais de semana</p>
+          </div>}
       </div>
       <div className="reviewsWrapper">
         <strong>AVALIAÇÕES</strong>

@@ -78,7 +78,15 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
       
-      .freelancer{
+      a {
+
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+        .freelancer{
         background-color: var(--blue);
         width: 40%;
         height: 110px;
@@ -126,6 +134,9 @@ export const Container = styled.div`
           }
         }  
       }
+
+    }      
+      
     }
   }
 `

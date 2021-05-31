@@ -83,6 +83,26 @@ export const Container = styled.div`
         padding: 0.3rem;
       }
     }
+
+    .signupFreelancerButton {
+      width: 100%;
+      height: 2.4rem;
+
+      margin-top: 0.5rem;
+
+      background: var(--pink);
+        
+      border: 0;
+
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--white);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     
     .terms {
       margin-top: 0.3rem;
@@ -104,6 +124,31 @@ export const Container = styled.div`
       input {
         padding-left: 0.3rem;
       }
+    }
+
+    .avatar-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .new-image {
+        height: 96px;
+        width: 96px;
+        margin-bottom: 1rem;
+        background: #f5f8fa;
+        border: 1px dashed #96d2f0;
+        border-radius: 50%;
+        cursor: pointer;
+
+
+        display: flex;
+        align-items:center;
+        justify-content:center;
+      }
+    }
+
+    input[type="file"] {
+      display: none;
     }
   }
 `

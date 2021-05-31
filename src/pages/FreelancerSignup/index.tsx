@@ -30,15 +30,10 @@ export function FreelancerSignup() {
   const [type, setType] = useState('');
   const [openingHours, setOpeningHours] = useState('');
   const [openOnWeekends, setOpenOnWeekends] = useState(false);
-  // const [user, setUser] = useState('');
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([])
 
   const paramsQuery: Params = useParams();
-
-  // useEffect(()=>{
-  //   setUser(paramsQuery.user)
-  // }, [paramsQuery.user])
 
 
   var markerIcon = L.icon({

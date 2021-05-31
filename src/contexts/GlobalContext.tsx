@@ -1,39 +1,11 @@
 import { createContext, useState, ReactNode, useEffect } from 'react';
 import api from '../services/api';
 
-interface User {
-  id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  city: string;
-  state: string;
-  birthday: string;
-  avatar: string;
-  password: string;
-}
-
-interface Freelancer {
-  id: number;
-  about: string;
-  latitude: number;
-  longitude: number;
-  mobile: string;
-  open_on_weekends: boolean;
-  portfolio: string;
-  type: string;
-  images: Image[];
-  user: User;
-}
-
-interface Image {
-  id: number;
-  url: string;
-}
+import FreelancerType from '../types/FreelancerType';
 
 interface GlobalContextData {
   isLogged: boolean;
-  freelancers: Freelancer[] 
+  freelancers: FreelancerType[] 
 }
 
 interface GlobalContextProps {
@@ -44,7 +16,7 @@ export const GlobalContext = createContext({} as GlobalContextData);
 
 export function GlobalContextProvider({ children } : GlobalContextProps ) {
 
-  const [isLogged] = useState(false);
+  const [isLogged] = useState(true);
   const [freelancers, setFreelancers] = useState([])
 
   useEffect( () => {

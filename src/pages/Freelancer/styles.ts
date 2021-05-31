@@ -199,7 +199,7 @@ export const Container = styled.div`
       justify-content:space-between;
     }
 
-    .openOnWeekends{
+    .openOnWeekendsFalse{
       background-color: rgb(247, 113, 113);
       width: 300px;
       height: 120px;
@@ -208,6 +208,22 @@ export const Container = styled.div`
 
       border-radius: 0.5rem;
       border: 1px solid rgb(206, 57, 57);
+
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content:space-between;
+    }
+
+    .openOnWeekendsTrue{
+      background-color: #99EE99;
+      width: 300px;
+      height: 120px;
+
+      padding: 1rem;
+
+      border-radius: 0.5rem;
+      border: 1px solid rgb(37, 211, 102);
 
       display: flex;
       flex-direction: column;
@@ -235,7 +251,7 @@ export const Container = styled.div`
 
 
       height: 6rem;
-      width: 720px;
+      width: 900px;
 
       margin-bottom: 1rem;
 
@@ -274,6 +290,7 @@ export const Container = styled.div`
 
         strong{
           margin: 0;
+          margin-left: 1rem;
         }
       }
 
