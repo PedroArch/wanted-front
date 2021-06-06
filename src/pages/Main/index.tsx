@@ -63,8 +63,8 @@ export function Main(){
             
             { filteredFreelancers.map((freelancer) => {
               return (
-                <Link to={`/freelancer/${freelancer.id}`}>
-                  <div key={freelancer.id}className="freelancer">
+                <Link to={`/freelancer/${freelancer.id}`} key={freelancer.id}>
+                  <div className="freelancer">
                     <div className="freelancerInfo">
                     <img src={freelancer.user.avatar} alt={freelancer.user.first_name} />
                     <div className="freelancerData">
@@ -72,7 +72,7 @@ export function Main(){
                         <li>{`${freelancer.user.first_name} ${freelancer.user.last_name}`}</li>
                         <li>{freelancer.type}</li>
                         <li>{`${freelancer.user.city} - ${freelancer.user.state}`}</li>
-                    </ul>
+                      </ul>
                     </div>
                     </div>
                     <div className="porfolios">

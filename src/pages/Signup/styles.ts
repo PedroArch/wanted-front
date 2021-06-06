@@ -114,7 +114,7 @@ export const Container = styled.div`
       .new-image {
         height: 96px;
         width: 96px;
-        margin-bottom: 1rem;
+        margin-bottom: 1rem ;
         background: #f5f8fa;
         border: 1px dashed #96d2f0;
         border-radius: 50%;
@@ -124,6 +124,17 @@ export const Container = styled.div`
         display: flex;
         align-items:center;
         justify-content:center;
+
+        img {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+
+          border: 1px solid var(--white);
+
+          object-fit: cover;
+          cursor: pointer;
+       }
       }
     }
 

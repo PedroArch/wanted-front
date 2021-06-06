@@ -1,5 +1,5 @@
-import { ChangeEvent, useState, FormEvent } from "react";
-import { useHistory, Link } from 'react-router-dom';
+import { ChangeEvent, useState, FormEvent, useEffect } from "react";
+import { useHistory, Link, useParams } from 'react-router-dom';
 import { FiPlus } from 'react-icons/fi'
 
 import { Container } from "./styles";
@@ -10,7 +10,15 @@ import api from '../../services/api';
 import Header from '../../components/Header';
 
 
+
+
+interface Params {
+  id: string;
+}
+
 export function User(){
+
+  const { id }: Params = useParams()
 
   const history = useHistory()
   
@@ -23,8 +31,27 @@ export function User(){
   const [birthday, setBirthday] = useState('');
   const [avatar, setAvatar] = useState<File[]>([]);
 
+ 
+
 
   const [termsChecked, setTermsChecked] = useState(false);
+
+  useEffect( () => {
+    async function userFetch () {
+      const response = await api.get(`/users/${id}`)
+      setFirstName(response.data.first_name)
+      setLastName(response.data.last_name)
+      setEmail(response.data.email)
+      setPassword(response.data.password)
+      setCity(response.data.city)
+      setState(response.data.state)
+      setBirthday(response.data.birthday.slice(0,10))
+
+    }
+    userFetch()
+  }, [id])
+
+
 
   function handleSubmit(event: FormEvent){
     event.preventDefault();
@@ -42,7 +69,7 @@ export function User(){
       data.append('avatar', avatarImg)
     })
 
-    api.post("/users", data)
+    api.put(`/users/${id}`, data)
 
     alert("Cadastro Realizado com sucesso");
 
@@ -68,7 +95,7 @@ export function User(){
       <Header />
       <Container>
           <form onSubmit={handleSubmit}>
-            <h1>CADASTRAR</h1>
+            <h1>PERFIL</h1>
 
             <div className="avatar-container">
               <label htmlFor='avatar' className="new-image">

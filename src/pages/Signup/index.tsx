@@ -22,6 +22,7 @@ export function Signup(){
   const [state, setState] = useState('');
   const [birthday, setBirthday] = useState('');
   const [avatar, setAvatar] = useState<File[]>([]);
+  const [previewImage, setPreviewImage] = useState<string[]>([]);
 
 
   const [termsChecked, setTermsChecked] = useState(false);
@@ -61,6 +62,14 @@ export function Signup(){
     const selectedImage =Array.from(event.target.files);
     setAvatar(selectedImage)
 
+    const selectPreviewImage = selectedImage.map(image =>{
+      return URL.createObjectURL(image)
+    })
+
+    
+
+    setPreviewImage(selectPreviewImage);
+
   }
 
   return (
@@ -69,12 +78,21 @@ export function Signup(){
       <Container>
           <form onSubmit={handleSubmit}>
             <h1>CADASTRAR</h1>
-
-            <div className="avatar-container">
-              <label htmlFor='avatar' className="new-image">
-                <FiPlus size={24} color='#F20789' />
-              </label>
-            </div>
+            {avatar.length > 0 ? (
+              <div className="avatar-container">
+                <label htmlFor='avatar' className="new-image">
+                  {previewImage.map(image => <img src={image} key={image} alt={image} />)}
+                </label>
+              </div>
+            ) :
+            (
+              <div className="avatar-container">
+                <label htmlFor='avatar' className="new-image">
+                  <FiPlus size={24} color='#F20789' />
+                </label>
+              </div>
+            )
+            }
             <input
              type="file"
              id='avatar'

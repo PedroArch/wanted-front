@@ -9,8 +9,8 @@ import User from '../types/User';
 
 interface GlobalContextData {
   isLogged: boolean;
-  user: User;
-  setUser: (user: User) => void;
+  activeUser: User;
+  setActiveUser: (user: User) => void;
   setFreelancers: (freelancers: FreelancerType[]) => void;
   freelancers: FreelancerType[]; 
 }
@@ -27,7 +27,7 @@ export function GlobalContextProvider({ children } : GlobalContextProps ) {
 
   const [isLogged] = useState(false);
   const [freelancers, setFreelancers] = useState<FreelancerType[]>([])
-  const [user, setUser] = useState(defaultUser)
+  const [activeUser, setActiveUser] = useState(defaultUser)
 
   useEffect( () => {
     async function fetch() {
@@ -37,12 +37,20 @@ export function GlobalContextProvider({ children } : GlobalContextProps ) {
     fetch()
   }, [])
 
+  useEffect( () => {
+    async function fetch() {
+      const response = await api.get('users/3')
+      setActiveUser(response.data)
+    }
+    fetch()
+  }, [activeUser])
+
   return (
     <GlobalContext.Provider value={{
       isLogged,
       freelancers,
-      user,
-      setUser,
+      activeUser,
+      setActiveUser,
       setFreelancers
     }}>
       { children }
