@@ -30,6 +30,7 @@ export function User(){
   const [state, setState] = useState('');
   const [birthday, setBirthday] = useState('');
   const [avatar, setAvatar] = useState<File[]>([]);
+  const [avatarPreview, setAvatarPreview] = useState('')
 
  
 
@@ -46,6 +47,7 @@ export function User(){
       setCity(response.data.city)
       setState(response.data.state)
       setBirthday(response.data.birthday.slice(0,10))
+      setAvatarPreview(response.data.avatar)
 
     }
     userFetch()
@@ -99,7 +101,7 @@ export function User(){
 
             <div className="avatar-container">
               <label htmlFor='avatar' className="new-image">
-                <FiPlus size={24} color='#F20789' />
+                <img src={avatarPreview} alt={firstName} />
               </label>
             </div>
             <input
