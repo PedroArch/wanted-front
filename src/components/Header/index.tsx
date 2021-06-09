@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -11,8 +11,17 @@ Modal.setAppElement('#root');
 
 export default function Header() {
 
-  const { isLogged } = useContext(GlobalContext);
+  const { isLogged, activeUser } = useContext(GlobalContext);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [user, setUser] = useState(activeUser)
+
+  useEffect( () => {
+    const userLocalStorage = localStorage.getItem('@Wanted:user')
+    if (userLocalStorage) {
+      setUser(JSON.parse(userLocalStorage))
+    }
+   
+  }, [isLogged])
 
   function handleLoginModalOpen(){
     setIsLoginModalOpen(true);
@@ -32,7 +41,7 @@ export default function Header() {
               <FiArrowLeft size={30} />
             </Link>
             <img src="/assets/logo-branco.png" alt="wanted" />
-            <img src="/assets/users/user.jpg" alt="user" />
+            <a href={`/user/${user.id}`}><img src={user.avatar} alt="user" /></a>
           </header>
         </Container>
       )

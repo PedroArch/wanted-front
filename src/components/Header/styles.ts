@@ -38,6 +38,7 @@ export  const Container = styled.div`
     img{
       width: 10%;
     }
+    
 
     img:last-child{
       height: 2rem;

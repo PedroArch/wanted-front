@@ -154,5 +154,17 @@ export const Container = styled.div`
     input[type="file"] {
       display: none;
     }
+
+    .logoutButton {
+      margin-top: 1rem;
+      width: 20%;
+      height: 2.2rem;
+
+      border: 0;
+
+      background-color: var(--black);
+      color: var(--white);
+      font-weight: 700;
+    }
   }
 `

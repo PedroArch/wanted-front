@@ -16,26 +16,37 @@ export const Container = styled.div`
     margin-bottom: 1rem;
   }
 
-  input {
-    height: 2.7rem;
-    padding-left: 0.5rem;
-    margin-bottom: 0.5rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      height: 2.7rem;
+      padding-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .loginButton{
+      height: 2.25rem;
+      width: 10rem;
+      
+      border: 0;
+
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 700;
+      background-color:var(--blue);
+      color:var(--white);
+      margin-bottom: 0.5rem
+    }
+
+
   }
 
-  .loginButton{
-    height: 2.25rem;
-    width: 10rem;
-    
-    border: 0;
-
-    font-size: 1.5rem;
-    font-style: italic;
-    font-weight: 700;
-    background-color:var(--blue);
-    color:var(--white);
-
-
-    margin-bottom: 0.5rem
+  .loginFail {
+    color: red;
   }
 
   .signupButton {

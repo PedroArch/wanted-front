@@ -9,10 +9,11 @@ import User from '../types/User';
 
 interface GlobalContextData {
   isLogged: boolean;
+  setIsLogged: (boolean: boolean) => void;
   activeUser: User;
   setActiveUser: (user: User) => void;
-  setFreelancers: (freelancers: FreelancerType[]) => void;
   freelancers: FreelancerType[]; 
+  setFreelancers: (freelancers: FreelancerType[]) => void;
 }
 
 interface GlobalContextProps {
@@ -25,9 +26,9 @@ export const GlobalContext = createContext({} as GlobalContextData);
 export function GlobalContextProvider({ children } : GlobalContextProps ) {
   
 
-  const [isLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
   const [freelancers, setFreelancers] = useState<FreelancerType[]>([])
-  const [activeUser, setActiveUser] = useState(defaultUser)
+  const [activeUser, setActiveUser] = useState<User>(defaultUser)
 
   useEffect( () => {
     async function fetch() {
@@ -35,23 +36,20 @@ export function GlobalContextProvider({ children } : GlobalContextProps ) {
       setFreelancers(response.data)
     }
     fetch()
-  }, [])
-
-  useEffect( () => {
-    async function fetch() {
-      const response = await api.get('users/3')
-      setActiveUser(response.data)
+    const localStorageUserLogged = localStorage.getItem('@Wanted:isLogged')
+    if (localStorageUserLogged) {
+      setIsLogged(JSON.parse(localStorageUserLogged))
     }
-    fetch()
-  }, [activeUser])
+  }, [])
 
   return (
     <GlobalContext.Provider value={{
       isLogged,
+      setIsLogged,
       freelancers,
+      setFreelancers,
       activeUser,
       setActiveUser,
-      setFreelancers
     }}>
       { children }
     </GlobalContext.Provider>

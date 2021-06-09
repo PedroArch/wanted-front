@@ -1,6 +1,5 @@
-import { ChangeEvent, useState, FormEvent, useEffect } from "react";
+import { ChangeEvent, useState, FormEvent, useEffect, useContext } from "react";
 import { useHistory, Link, useParams } from 'react-router-dom';
-import { FiPlus } from 'react-icons/fi'
 
 import { Container } from "./styles";
 import { estados } from '../../utils/estados';
@@ -8,9 +7,7 @@ import { estados } from '../../utils/estados';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
-
-
-
+import { GlobalContext } from "../../contexts/GlobalContext";
 
 interface Params {
   id: string;
@@ -32,10 +29,9 @@ export function User(){
   const [avatar, setAvatar] = useState<File[]>([]);
   const [avatarPreview, setAvatarPreview] = useState('')
 
- 
-
-
   const [termsChecked, setTermsChecked] = useState(false);
+
+  const { setIsLogged } = useContext(GlobalContext);
 
   useEffect( () => {
     async function userFetch () {
@@ -90,6 +86,13 @@ export function User(){
     const selectedImage =Array.from(event.target.files);
     setAvatar(selectedImage)
 
+  }
+
+  function handleLogoutButtonClick() {
+
+    localStorage.setItem('@Wanted:isLogged', JSON.stringify(false))
+    history.push('/main');
+    setIsLogged(false)
   }
 
   return (
@@ -181,6 +184,7 @@ export function User(){
               <input id="terms" type="checkbox" onChange={(event) => handleTermsClick(event)} />
               <span>Concordo com os termos de serviço e privacidade da wanted</span>
             </div>
+            <button type="button" className="logoutButton" onClick={handleLogoutButtonClick}>LOGOUT</button>
           </form>
       </Container>
 		</>
