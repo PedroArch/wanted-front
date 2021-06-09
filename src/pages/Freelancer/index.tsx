@@ -49,6 +49,7 @@ export function Freelancer(){
     return null;
   }
 
+
   return(
     <>
     <Header />
@@ -96,10 +97,10 @@ export function Freelancer(){
           <input type="text" placeholder="Assunto"/>
           <textarea placeholder="Digite sua mensagem" />
           <button type="button">ENVIAR</button>
-          <button type="button" className="whatsappButton">
+          <a target='_blank' rel='noreferrer' href={`https://api.whatsapp.com/send/?phone=55${freelancer.mobile}&text=Oi%2C+${freelancer.user.first_name}&app_absent=0`}className="whatsappButton">
             <FaWhatsapp size={25} />
             <span>Enviei uma mensagem via Whatsapp</span>
-          </button>         
+          </a>         
         </form>
         <MapContainer
           center={[freelancer.latitude, freelancer.longitude]}

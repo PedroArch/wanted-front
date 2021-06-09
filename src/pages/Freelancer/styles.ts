@@ -158,6 +158,12 @@ export const Container = styled.div`
       }
 
       .whatsappButton {
+        height: 2.75rem;
+        width: 18.5rem;
+        margin-bottom: 0.5rem;     
+        font-size: 1.5rem;
+        font-style: italic;
+        font-weight: 700;
         background-color: rgb(37, 211, 102);
         display: flex;
         align-items: center;
