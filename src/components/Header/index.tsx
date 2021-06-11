@@ -41,7 +41,7 @@ export default function Header() {
               <FiArrowLeft size={30} />
             </Link>
             <img src="/assets/logo-branco.png" alt="wanted" />
-            <a href={`/user/${user.id}`}><img src={user.avatar} alt="user" /></a>
+            <Link to={`/user/${user.id}`}><img src={user.avatar} alt="user" /></Link>
           </header>
         </Container>
       )

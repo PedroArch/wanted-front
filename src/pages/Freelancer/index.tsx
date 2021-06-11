@@ -1,11 +1,12 @@
-import { Container } from "./styles";
 import { MapContainer, TileLayer, Marker, useMap} from 'react-leaflet';
 import L from 'leaflet';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { FaFacebookF, FaInstagram, FaTwitter, FaGithub, FaWhatsapp } from 'react-icons/fa'
 import { FiClock } from 'react-icons/fi'
 import { AiOutlineExclamationCircle } from 'react-icons/ai'
+import { Container } from "./styles";
 import Header from '../../components/Header';
+import PortfolioModal from '../../components/PortfolioModal';
 
 import FreelancerType from '../../types/FreelancerType';
 import { freelancerDefault } from '../../utils/freelancerDefault'
@@ -32,6 +33,8 @@ export function Freelancer(){
   const routeId: RouteParamsProps = useParams()
 
   const [freelancer, setFreelancer] = useState<FreelancerType>(freelancerDefault);
+  const [isPorfolioModalOpen, setIsPortfolioModalOpen] = useState(false)
+  const [imageForModal, setImageForModal] = useState('')
 
   useEffect(() => {
     async function freelancerFetch () {
@@ -47,6 +50,15 @@ export function Freelancer(){
     map.setView(center, zoom)
 
     return null;
+  }
+
+  function handlePortfolioModalOpen(event: any){
+    setIsPortfolioModalOpen(true);
+    setImageForModal(event.target.currentSrc)
+  }
+
+  function handlePorfolioModalClose(){
+    setIsPortfolioModalOpen(false);
   }
 
 
@@ -86,7 +98,11 @@ export function Freelancer(){
         </div>
         <div className="thumbnailsPorfolio">
           {freelancer.images.map((image) => {
-            return <img key={image.url} src={image.url} alt="imagem portfolio" />
+            return <img
+             key={image.url} 
+             src={image.url} 
+             onClick={handlePortfolioModalOpen}
+             alt="imagem portfolio" />
           })}
         </div>
       </div>
@@ -181,6 +197,11 @@ export function Freelancer(){
         </div>
       </div>
     </Container>
+    <PortfolioModal
+      isOpen={isPorfolioModalOpen}
+      onRequestClose={handlePorfolioModalClose}
+      imageUrl={imageForModal}
+    />
     </>
   )
 }

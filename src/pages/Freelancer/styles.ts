@@ -98,6 +98,7 @@ export const Container = styled.div`
         width: 8rem;
         height: 7rem;
         object-fit: cover;
+        cursor: pointer;
       }
     }
   }
@@ -172,6 +173,10 @@ export const Container = styled.div`
           font-size: 1rem;
         }
       }
+    }
+
+    .leaflet-container {
+      z-index: -1;
     }
 
 
